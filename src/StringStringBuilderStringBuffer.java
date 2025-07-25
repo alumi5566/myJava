@@ -1,8 +1,6 @@
-import common.Car;
-
 import java.util.ArrayList;
 
-public class StringCmp {
+public class StringStringBuilderStringBuffer {
     public static void main(String[] args) throws InterruptedException {
         System.out.println("StringCmp!");
 
