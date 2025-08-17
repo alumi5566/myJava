@@ -27,21 +27,35 @@ public class HeapCmpSample {
         }
         return Integer.compare(x[0], y[0]);     // smaller first first
     };
+
+    static Comparator<int[]> righty = (x, y) -> {
+        if(x[0] == y[0]) { return x[1] - y[1];}
+        return x[0] - y[0];
+    };
     public static void main(String[] args) {
         System.out.print("HeapCmpSample!!\n");
+        // left
         PriorityQueue<int[]> left = new PriorityQueue<>(lefty);
         PriorityQueue<int[]> left_v2 = new PriorityQueue<>(lefty_v2);
-        int[][] buildings = {{2,9,10},{2,9,11},{3,7,15},{5,12,12},{15,20,10},{19,24,8}};
+        // right
+        PriorityQueue<int[]> right = new PriorityQueue<>(righty);
+        int[][] buildings = {{2,9,10},{2,9,11},{3,7,15},{3,7,16},{5,12,12},{15,20,10},{19,24,8}};
         for (int[] building: buildings) {
+            // left heap
             left.add(new int[]{building[0], building[2]});
             left_v2.add(new int[]{building[0], building[2]});
+            // right heap
+            right.add(new int[]{building[1], building[2]});
         }
 
         while (left.size() > 0) {
             int[] top = left.poll();
             int[] top_v2 = left_v2.poll();
             System.out.println("v1: (" + top[0] + ", " + top[1]+"), v2: ("+top_v2[0] + ", " + top_v2[1] + "}");
-//            System.out.println();
+        }
+        while (right.size() > 0) {
+            int[] top = right.poll();
+            System.out.println("right: {" + top[0] + ", " + top[1]+")");
         }
 
     }
